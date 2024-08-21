@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Install Python (if not already installed)
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'  # Replace '3.x' with the required Python version
+
+      # Install required packages
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt  # Ensure you have a requirements.txt file if there are dependencies
+
+      # Run the cloud1.py script
+      - name: Run cloud1.py
+        run: python cloud1.py
