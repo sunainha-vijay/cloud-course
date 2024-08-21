@@ -14,17 +14,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Install Python (if not already installed)
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      # Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          python-version: '3.x'  # Replace '3.x' with the required Python version
+          node-version: '14.x'  # Replace with your required Node.js version
 
-      # Install required packages
+      # Install dependencies
       - name: Install dependencies
-        run: |
-          pip install -r requirements.txt  # Ensure you have a requirements.txt file if there are dependencies
+        run: npm install
 
-      # Run the cloud1.py script
-      - name: Run cloud1.py
-        run: python cloud1.py
+      # Run your Node.js script or tests
+      - name: Run Node.js script
+        run: node your-script.js  # Replace with the path to your Node.js script
