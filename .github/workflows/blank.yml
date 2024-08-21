@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'  # Replace '3.x' with the required Python version
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt  # If you have a requirements file
+          pip install nbconvert  # Install nbconvert to convert notebooks
+
+      # Convert the Jupyter notebook to a Python script
+      - name: Convert cloud1.ipynb to cloud1.py
+        run: jupyter nbconvert --to python cloud1.ipynb
+
+      # Run the converted Python script
+      - name: Run cloud1.py
+        run: python cloud1.py
