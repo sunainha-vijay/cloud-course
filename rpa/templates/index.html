@@ -1,0 +1,24 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction App</title>
+</head>
+<body>
+    <h1>Predict Using Regression Models</h1>
+    <form action="/predict" method="post">
+        <label for="height">Enter a Number:</label>
+        <input type="text" id="height" name="height" required>
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if height %}
+        <h2>Results:</h2>
+        <p>Height: {{ height }}</p>
+        <p>Linear Regression Result: {{ linear_result }}</p>
+        <p>Polynomial Regression Result: {{ polynomial_result }}</p>
+    {% endif %}
+</body>
+</html>
